@@ -30,7 +30,7 @@ class BootstrapMiddleware
     {
         $data = $request->getParsedBody();
         $method = $data['_method']?? '';
-        $method = strtolower($method);
+        $method = strtoupper($method);
         if(in_array($method,['PUT','DELETE'])){
             $request = $request->withMethod($method);
         }

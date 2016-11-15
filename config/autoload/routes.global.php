@@ -3,7 +3,7 @@
 use CodeEmailMKT\Application\Action\Customer\{CustomerListPageAction,CustomerCreatePageAction,CustomerUpdatePageAction,CustomerDeletePageAction};
 use CodeEmailMKT\Application\Action\Customer\Factory as Customer;
 use CodeEmailMKT\Application\Action;
-
+use CodeEmailMKT\Application\Middleware;
 return [
     'dependencies' => [
         'invokables' => [
@@ -25,6 +25,9 @@ return [
             'path' => '/',
             'middleware' => CustomerListPageAction::class,
             'allowed_methods' => ['GET'],
+            'middleware' => [
+                Middleware\AuthenticationMiddleware::class
+            ]
         ],
         [
             'name' => 'auth.login',
