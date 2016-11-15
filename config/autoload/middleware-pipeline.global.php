@@ -50,12 +50,6 @@ return [
             ],
             'priority' => 10000,
         ],
-        'admin' => [
-            'path' => '/admin',
-            'middleware' => [
-               Middleware\AuthenticationMiddleware::class
-            ]
-        ],
         'routing' => [
             'middleware' => [
                 ApplicationFactory::ROUTING_MIDDLEWARE,
@@ -69,7 +63,12 @@ return [
             ],
             'priority' => 1,
         ],
-
+        'admin' => [
+            'path' => '/admin',
+            'middleware' => [
+               Middleware\AuthenticationMiddleware::class
+            ]
+        ],
         'error' => [
             'middleware' => [
                 // Add error middleware here.

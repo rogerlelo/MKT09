@@ -27,7 +27,9 @@ class AuthenticationMiddleware
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {  //echo 'authentication';
-        if(!$this->authService->isAuth()){//se não estiver logado
+        $routeResult = $request->getAttribute('Zend\Expressive\Router\RouteResult');
+        $routeName   = $routeResult??''??$routeResult->getMatchedRouteName();
+        if(!$this->authService->isAuth() && $routeName!='auth.login'){//se não estiver logado
             $uri = $this->router->generateUri('auth.login');
             return new RedirectResponse($uri);
         }
